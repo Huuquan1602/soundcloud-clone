@@ -1,102 +1,216 @@
-# SoundcloudClone
+# SoundCloud Clone
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+A SoundCloud-inspired music streaming application built with **Angular, TypeScript, and Nx**, focusing on scalable frontend architecture, reusable components, reactive state management, and music playback.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+## About the Project
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+SoundCloud Clone is a personal engineering project that recreates the core user experience of a modern music streaming platform.
 
-## Run tasks
+The application aims to support music discovery, track browsing, artist profiles, playlists, search, and persistent audio playback through the SoundCloud Widget API.
 
-To run the dev server for your app, use:
+Beyond recreating the interface, the main objective is to understand how a production-style Angular application is designed, organized, and maintained.
 
-```sh
+The project takes architectural inspiration from [trungvose/angular-spotify](https://github.com/trungvose/angular-spotify), while independently implementing a SoundCloud-inspired experience.
+
+**Current status:** Early development. The Nx workspace, initial application shell, and global navigation header have been implemented. Music discovery and playback features are planned.
+
+## Tech Stack
+
+| Technology | Responsibility |
+|---|---|
+| Angular | Component-based frontend application |
+| TypeScript | Type-safe application logic |
+| Nx | Monorepo organization, project boundaries, and build orchestration |
+| Angular Router | Client-side routing and lazy loading |
+| SCSS | Component and global styling |
+| SoundCloud Widget API | Planned audio playback integration |
+| Vitest | Unit testing |
+| Playwright | End-to-end testing |
+| GitHub Actions | Continuous integration |
+
+## Architecture
+
+The application follows a **feature-oriented Angular architecture**, with Nx used to support modularization as the project grows.
+
+The architectural goal is to separate application composition, business features, reusable UI, data access, and shared utilities.
+
+### High-Level Architecture
+
+```text
+                    SoundCloud Clone
+                           |
+                    Angular Application
+                           |
+          +----------------+----------------+
+          |                |                |
+      App Shell         Features       Shared Libraries
+          |                |                |
+       Header           Discover         UI Components
+       Layout           Search           Models
+       Routing          Library          Utilities
+       Player           Artists
+          |                |
+          +--------+-------+
+                   |
+             Data Access Layer
+                   |
+          SoundCloud Widget API
+             / Mock Data
+```
+
+The diagram represents the **target architecture**, not the complete current implementation.
+
+### Architectural Layers
+
+**1. Application Shell**
+
+The application shell is responsible for the global structure shared across pages.
+
+It includes the navigation header, main content area, routing outlet, and eventually a persistent music player.
+
+The shell remains mounted while individual pages change, allowing shared application UI and playback state to persist across navigation.
+
+**2. Feature Layer**
+
+Each feature owns a specific area of application functionality.
+
+Planned features include:
+
+- **Discover:** Music recommendations and trending tracks.
+- **Search:** Finding tracks, artists, and playlists.
+- **Library:** User collections and liked tracks.
+- **Artists:** Artist profiles and music catalogs.
+- **Player:** Playback controls and track queue management.
+
+Features will be developed incrementally and organized into dedicated Nx libraries where this provides meaningful separation.
+
+**3. UI Layer**
+
+Reusable, presentation-focused components such as track cards, playlist cards, artwork, buttons, and loading indicators.
+
+These components should receive data through well-defined inputs and communicate user interactions through outputs rather than directly owning application-wide business state.
+
+**4. Data Access Layer**
+
+Responsible for isolating external integrations and data retrieval from presentation components.
+
+Development begins with local mock data. Future integrations will include the SoundCloud Widget API for supported playback operations.
+
+This separation makes it easier to replace mock implementations without rewriting feature UI.
+
+**5. Shared Layer**
+
+Contains reusable TypeScript types, interfaces, constants, and utilities that are not specific to one feature.
+
+### Planned Nx Workspace Structure
+
+```text
+soundcloud-clone/
+├── apps/
+│   ├── soundcloud/             # Angular application entry point
+│   └── soundcloud-e2e/         # End-to-end tests
+│
+├── libs/                       # Planned modular libraries
+│   ├── shell/                  # Application shell and layout
+│   ├── discover/
+│   │   ├── feature/            # Discover page and orchestration
+│   │   ├── ui/                 # Discover presentation components
+│   │   └── data-access/        # Track data retrieval
+│   ├── player/
+│   │   ├── feature/            # Playback orchestration
+│   │   ├── ui/                 # Player controls
+│   │   └── data-access/        # Playback integration and state
+│   └── shared/
+│       ├── ui/                 # Reusable UI components
+│       ├── models/             # Shared domain types
+│       └── utils/              # Shared utilities
+│
+├── .github/workflows/          # CI workflows
+├── nx.json
+└── package.json
+```
+
+Libraries will be introduced as features are implemented rather than generated in advance.
+
+### Component Communication and State
+
+The architecture distinguishes between local UI state and shared application state.
+
+- **Local state:** Component-specific interactions such as input values, dropdown visibility, and hover states.
+- **Feature state:** Data and interactions owned by a particular feature.
+- **Global playback state:** The active track, playback status, progress, and queue, shared between pages and the persistent player.
+
+Angular Signals are being considered for reactive state management. The exact implementation will be selected as playback and cross-feature requirements become concrete.
+
+### Navigation and Playback
+
+Angular Router controls navigation between application pages.
+
+The global player is planned to live outside the routed page content so that navigating from Discover to an artist or playlist does not recreate the player component.
+
+SoundCloud Widget API integration is planned for playback, with an adapter layer separating the external SDK from application state and UI components.
+
+## Current Implementation
+
+- [x] Initialize Nx Angular workspace
+- [x] Configure project tooling and GitHub Actions CI
+- [x] Create global navigation header
+- [x] Add navigation, search, and authentication UI placeholders
+- [x] Establish root application layout
+- [ ] Implement Discover page
+- [ ] Build reusable track cards
+- [ ] Add music search and artist pages
+- [ ] Implement persistent playback
+- [ ] Integrate SoundCloud Widget API
+- [ ] Introduce feature-specific Nx libraries
+- [ ] Implement shared playback state management
+- [ ] Improve responsive design and accessibility
+
+## Getting Started
+
+**Prerequisites:** Node.js 22 and npm.
+
+```bash
+git clone https://github.com/atticus1602/soundcloud-clone.git
+cd soundcloud-clone
+npm ci
 npx nx serve soundcloud
 ```
 
-To create a production bundle:
+Open http://localhost:4200.
 
-```sh
-npx nx build soundcloud
-```
+## Development Workflow
 
-To see all available targets to run for a project, run:
+The project follows an incremental, feature-based development workflow:
 
-```sh
-npx nx show project soundcloud
-```
+1. Implement a focused feature in a dedicated Git branch.
+2. Keep components small and responsibilities explicit.
+3. Use Conventional Commits to document meaningful changes.
+4. Validate changes through automated tooling and CI.
+5. Review and merge changes through pull requests.
+6. Update documentation as architectural decisions evolve.
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+## Roadmap
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+**Phase 1 — Application Foundation**
 
-## Add new projects
+Global navigation, routing, Discover page, reusable music cards, and responsive layout.
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+**Phase 2 — Music Experience**
 
-Use the plugin's generator to create new projects.
+Track browsing, search, artist profiles, playlists, and playback controls.
 
-To generate a new application, use:
+**Phase 3 — Playback Architecture**
 
-```sh
-npx nx g @nx/angular:app demo
-```
+SoundCloud Widget integration, shared playback state, and a persistent player.
 
-To generate a new library, use:
+**Phase 4 — Engineering Improvements**
 
-```sh
-npx nx g @nx/angular:lib mylib
-```
+Nx library boundaries, performance optimization, accessibility, automated testing, and deployment.
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+## Acknowledgements
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [SoundCloud](https://soundcloud.com/) — Product and UI inspiration.
+- [angular-spotify](https://github.com/trungvose/angular-spotify) — Angular application architecture inspiration.
 
-## Set up CI!
-
-### Step 1
-
-To connect to Nx Cloud, run the following command:
-
-```sh
-npx nx connect
-```
-
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
-
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-### Step 2
-
-Use the following command to configure a CI workflow for your workspace:
-
-```sh
-npx nx g ci-workflow
-```
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+This project is independently developed for educational and portfolio purposes and is not affiliated with or endorsed by SoundCloud.
