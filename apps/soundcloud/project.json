@@ -8,9 +8,7 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/soundcloud",
@@ -23,9 +21,7 @@
             "input": "apps/soundcloud/public"
           }
         ],
-        "styles": [
-          "apps/soundcloud/src/styles.scss"
-        ]
+        "styles": ["apps/soundcloud/src/styles.scss"]
       },
       "configurations": {
         "production": {
@@ -77,9 +73,7 @@
       "readyWhen": {
         "signal": true
       },
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "soundcloud:build",

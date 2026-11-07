@@ -32,25 +32,27 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   webServer: {
-    command: isCI ? 'npx nx run soundcloud:serve-static' : 'npx nx run soundcloud:serve',
+    command: isCI
+      ? 'npx nx run soundcloud:serve-static'
+      : 'npx nx run soundcloud:serve',
     url: getReadyUrl('http://localhost:4200'),
     reuseExistingServer: true,
-    cwd: workspaceRoot
+    cwd: workspaceRoot,
   },
   projects: [
     {
-      name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
     },
 
     {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
     },
 
     {
-      name: "webkit",
-      use: { ...devices["Desktop Safari"] },
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
     },
 
     // Uncomment for mobile browsers support
