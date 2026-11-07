@@ -16,17 +16,17 @@ The project takes architectural inspiration from [trungvose/angular-spotify](htt
 
 ## Tech Stack
 
-| Technology | Responsibility |
-|---|---|
-| Angular | Component-based frontend application |
-| TypeScript | Type-safe application logic |
-| Nx | Monorepo organization, project boundaries, and build orchestration |
-| Angular Router | Client-side routing and lazy loading |
-| SCSS | Component and global styling |
-| SoundCloud Widget API | Planned audio playback integration |
-| Vitest | Unit testing |
-| Playwright | End-to-end testing |
-| GitHub Actions | Continuous integration |
+| Technology            | Responsibility                                                     |
+| --------------------- | ------------------------------------------------------------------ |
+| Angular               | Component-based frontend application                               |
+| TypeScript            | Type-safe application logic                                        |
+| Nx                    | Monorepo organization, project boundaries, and build orchestration |
+| Angular Router        | Client-side routing and lazy loading                               |
+| SCSS                  | Component and global styling                                       |
+| SoundCloud Widget API | Planned audio playback integration                                 |
+| Vitest                | Unit testing                                                       |
+| Playwright            | End-to-end testing                                                 |
+| GitHub Actions        | Continuous integration                                             |
 
 ## Architecture
 
