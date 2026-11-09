@@ -1,1 +1,39 @@
-<p>DiscoverFeature works!</p>
+
+<section class="discover">
+  <header class="discover__header">
+    <h1>Discover</h1>
+    <p>Explore trending sounds and fresh discoveries.</p>
+  </header>
+
+  <section class="discover__section">
+    <div class="discover__section-header">
+      <h2>Trending Tracks</h2>
+      <p>Popular sounds right now</p>
+    </div>
+
+    <div class="discover__grid">
+      @for (track of trendingTracks; track track.id) {
+        <lib-track-card
+          [track]="track"
+          (play)="onPlayTrack($event)"
+        />
+      }
+    </div>
+  </section>
+
+  <section class="discover__section">
+    <div class="discover__section-header">
+      <h2>Recommended for You</h2>
+      <p>Find something new to listen to</p>
+    </div>
+
+    <div class="discover__grid">
+      @for (track of recommendedTracks; track track.id) {
+        <lib-track-card
+          [track]="track"
+          (play)="onPlayTrack($event)"
+        />
+      }
+    </div>
+  </section>
+</section>

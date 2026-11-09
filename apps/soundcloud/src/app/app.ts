@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
+import { RouterOutlet } from '@angular/router';
 import { Header } from './layout/header/header';
 
 @Component({
-  imports: [NxWelcome, RouterModule, Header],
   selector: 'app-root',
+  imports: [RouterOutlet, Header],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
-  protected title = 'soundcloud';
-}
+export class App {}
+
