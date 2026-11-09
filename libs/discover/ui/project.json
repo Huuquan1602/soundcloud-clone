@@ -1,0 +1,10 @@
+{
+  "name": "discover-ui",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/discover/ui/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project discover-ui --web",
+  "targets": {}
+}
