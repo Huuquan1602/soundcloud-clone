@@ -1,0 +1,30 @@
+
+<article class="track-card">
+  <div class="track-card__artwork">
+    <img
+      [src]="track().artworkUrl"
+      [alt]="track().title + ' artwork'"
+      loading="lazy"
+    />
+
+    <button
+      type="button"
+      class="track-card__play"
+      [attr.aria-label]="'Play ' + track().title"
+      (click)="onPlay()"
+    >
+      <span aria-hidden="true">▶</span>
+    </button>
+  </div>
+
+  <div class="track-card__info">
+    <h3 class="track-card__title">
+      {{ track().title }}
+    </h3>
+
+    <p class="track-card__artist">
+      {{ track().artist }}
+    </p>
+  </div>
+</article>
+

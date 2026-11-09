@@ -1,0 +1,10 @@
+{
+  "name": "discover-feature",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/discover/feature/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project discover-feature --web",
+  "targets": {}
+}
