@@ -1,5 +1,5 @@
 
-import type { Track } from '@soundcloud-clone/discover-ui';
+import type { Track } from '@soundcloud-clone/shared-models';
 
 export const MOCK_TRACKS: Track[] = [
   {

@@ -1,0 +1,25 @@
+@if (track(); as currentTrack) {
+  <div class="player">
+    <div class="player__track">
+      <img
+        class="player__artwork"
+        [src]="currentTrack.artworkUrl"
+        [alt]="currentTrack.title"
+      />
+
+      <div class="player__info">
+        <span class="player__title">{{ currentTrack.title }}</span>
+        <span class="player__artist">{{ currentTrack.artist }}</span>
+      </div>
+    </div>
+
+    <button
+      class="player__toggle"
+      type="button"
+      (click)="togglePlay.emit()"
+      [attr.aria-label]="isPlaying() ? 'Pause' : 'Play'"
+    >
+      {{ isPlaying() ? '❚❚' : '▶' }}
+    </button>
+  </div>
+}

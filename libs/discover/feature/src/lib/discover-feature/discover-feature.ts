@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import {
-  TrackCard,
-  type Track,
-} from '@soundcloud-clone/discover-ui';
+
+import { Component, inject } from '@angular/core';
+import { TrackCard } from '@soundcloud-clone/discover-ui';
+import { PlayerStore } from '@soundcloud-clone/player-data-access';
+import type { Track } from '@soundcloud-clone/shared-models';
 
 import { MOCK_TRACKS } from './mock-tracks';
 
@@ -13,12 +13,13 @@ import { MOCK_TRACKS } from './mock-tracks';
   styleUrl: './discover-feature.scss',
 })
 export class DiscoverFeature {
+  private readonly playerStore = inject(PlayerStore);
+
   readonly trendingTracks = MOCK_TRACKS.slice(0, 3);
 
   readonly recommendedTracks = MOCK_TRACKS.slice(3);
 
   onPlayTrack(track: Track): void {
-    console.log('Play requested:', track);
+    this.playerStore.play(track);
   }
 }
-

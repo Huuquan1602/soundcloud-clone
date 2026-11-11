@@ -1,0 +1,10 @@
+{
+  "name": "player-ui",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/player/ui/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project player-ui --web",
+  "targets": {}
+}

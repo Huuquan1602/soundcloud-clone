@@ -1,0 +1,7 @@
+@if (playerStore.hasTrack()) {
+  <lib-player-controls
+    [track]="playerStore.currentTrack()"
+    [isPlaying]="playerStore.isPlaying()"
+    (togglePlay)="playerStore.togglePlay()"
+  />
+}
