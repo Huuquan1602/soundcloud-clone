@@ -11,10 +11,10 @@ import type { Track } from '@soundcloud-clone/shared-models';
 export class TrackCard {
   readonly track = input.required<Track>();
 
-  readonly play = output<Track>();
+  readonly playRequested  = output<Track>();
 
   onPlay(): void {
-    this.play.emit(this.track());
+    this.playRequested.emit(this.track());
   }
 }
 

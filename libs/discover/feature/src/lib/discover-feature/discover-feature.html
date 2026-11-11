@@ -15,7 +15,7 @@
       @for (track of trendingTracks; track track.id) {
         <lib-track-card
           [track]="track"
-          (play)="onPlayTrack($event)"
+          (playRequested)="onPlayTrack($event)"
         />
       }
     </div>
