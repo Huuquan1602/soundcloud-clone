@@ -1,6 +1,6 @@
 
 import { Component, input, output } from '@angular/core';
-import type { Track } from '../models/track.model';
+import type { Track } from '@soundcloud-clone/shared-models';
 
 @Component({
   selector: 'lib-track-card',

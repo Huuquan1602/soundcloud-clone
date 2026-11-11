@@ -18,7 +18,15 @@
       "@soundcloud-clone/discover-feature": [
         "./libs/discover/feature/src/index.ts"
       ],
-      "@soundcloud-clone/discover-ui": ["./libs/discover/ui/src/index.ts"]
+      "@soundcloud-clone/discover-ui": ["./libs/discover/ui/src/index.ts"],
+      "@soundcloud-clone/player-data-access": [
+        "./libs/player/data-access/src/index.ts"
+      ],
+      "@soundcloud-clone/player-ui": ["./libs/player/ui/src/index.ts"],
+      "@soundcloud-clone/player-feature": [
+        "./libs/player/feature/src/index.ts"
+      ],
+      "@soundcloud-clone/shared-models": ["./libs/shared/models/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

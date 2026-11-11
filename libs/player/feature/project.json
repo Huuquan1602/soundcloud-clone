@@ -1,0 +1,10 @@
+{
+  "name": "player-feature",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/player/feature/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project player-feature --web",
+  "targets": {}
+}
