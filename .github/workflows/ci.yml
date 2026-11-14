@@ -28,16 +28,16 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
           cache: npm
 
       - name: Restore Nx cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: .nx/cache
           key: nx-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ github.sha }}
@@ -64,10 +64,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
           cache: npm
@@ -83,7 +83,7 @@ jobs:
 
       - name: Upload Playwright report
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: playwright-report
           path: dist/.playwright/apps/soundcloud-e2e/
