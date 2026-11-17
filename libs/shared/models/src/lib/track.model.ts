@@ -4,4 +4,5 @@ export interface Track {
   artist: string;
   artworkUrl: string;
   duration: number;
+  soundcloudUrl?: string;
 }
