@@ -50,7 +50,7 @@ export class SoundCloudWidgetService {
     this.widget.bind(window.SC.Widget.Events.READY, () => {
       this.ready = true;
 
-      console.log('SoundCloud Widget is ready!');
+      console.log('[SoundCloud] Widget READY');
 
       onReady?.();
 
@@ -60,25 +60,57 @@ export class SoundCloudWidgetService {
         this.load(url);
       }
     });
+
+    this.widget.bind(window.SC.Widget.Events.PLAY, () => {
+      console.log('[SoundCloud] PLAY event');
+    });
+
+    this.widget.bind(window.SC.Widget.Events.PAUSE, () => {
+      console.log('[SoundCloud] PAUSE event');
+    });
+
+    this.widget.bind(window.SC.Widget.Events.FINISH, () => {
+      console.log('[SoundCloud] FINISH event');
+    });
+
+    this.widget.bind(window.SC.Widget.Events.ERROR, () => {
+      console.error('[SoundCloud] ERROR event');
+    });
   }
 
   load(url: string): void {
+    console.log('[SoundCloud] Requested track:', url);
+
     if (!this.widget || !this.ready) {
+      console.log('[SoundCloud] Widget not ready, queueing track');
       this.pendingUrl = url;
       return;
     }
 
+    console.log('[SoundCloud] Loading track');
+
     this.widget.load(url, {
-      auto_play: true,
+      auto_play: false,
     });
   }
 
   play(): void {
-    this.widget?.play();
+    if (!this.widget || !this.ready) {
+      console.warn('[SoundCloud] Cannot play: widget not ready');
+      return;
+    }
+
+    console.log('[SoundCloud] Calling play()');
+    this.widget.play();
   }
 
   pause(): void {
-    this.widget?.pause();
+    if (!this.widget || !this.ready) {
+      return;
+    }
+
+    console.log('[SoundCloud] Calling pause()');
+    this.widget.pause();
   }
 
   seekTo(milliseconds: number): void {
