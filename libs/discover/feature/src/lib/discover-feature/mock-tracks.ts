@@ -4,10 +4,12 @@ import type { Track } from '@soundcloud-clone/shared-models';
 export const MOCK_TRACKS: Track[] = [
   {
     id: '1',
-    title: 'Midnight Drive',
-    artist: 'Neon Waves',
+    title: 'Anomy5 - Starline',
+    artist: 'KETTLE',
     artworkUrl: 'https://picsum.photos/seed/midnight/400',
     duration: 224,
+    soundcloudUrl:
+      'https://soundcloud.com/blake-camp-447164832/anomy5-starline',
   },
   {
     id: '2',
